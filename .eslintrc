@@ -12,6 +12,6 @@
     },
     "rules": {
       "react/prop-types": "off",
-      "semi": "error"
+      "semi": "off"
     }
   }
