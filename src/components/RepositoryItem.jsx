@@ -15,7 +15,7 @@ export default function RepositoryItem({ item }) {
 
         <View style={styles.textContainer}>
           <Text>{item.fullName}</Text>
-          <Text>{item.description}</Text>
+          <Text numberOfLines={2}>{item.description}</Text>
           <Button title={item.language} />
         </View>
       </View>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "lightgray",
   },
   titleContainer: {
+
     flexDirection: "row",
   },
   imageContainer: {
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   textContainer: {
+    flex:1,
     padding: 10,
   },
   stadisticsContainer: {

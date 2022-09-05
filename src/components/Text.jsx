@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.main,
     fontWeight: theme.fontWeights.normal,
+    
   },
   colorTextSecondary: {
     color: theme.colors.textSecondary,
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
   },
   colorTextWhite: {
     color: "white",
+    
   },
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold,
   },
+  
 });
 
 const Text = ({ color, fontSize, fontWeight, style, ...props }) => {

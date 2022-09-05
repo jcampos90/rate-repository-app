@@ -1,8 +1,9 @@
-import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import React, { useEffect } from "react";
+import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
 import Text from "./Text";
-import { Link } from "react-router-native";
+import { Link, useNavigate } from "react-router-native";
+import useSignIn from "../hooks/useSignIn";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,12 +26,37 @@ const TabOption = ({ path, text }) => (
   </Link>
 );
 
-const AppBar = () => {
+const AppBar = ({isSignedIn,setIsSignedIn}) => {
+
+  const { checkSignedIn, signOut } = useSignIn()
+  const navigate = useNavigate()
+  // const [isSignedIn,setIsSignedIn]=useState(false)
+
+
+  useEffect(() => {
+     setIsSignedIn( checkSignedIn() ? true:false)
+  }, [])
+
+  const handleSignOut = async () => {
+    await signOut()
+    navigate('/signin')
+    setIsSignedIn(false)
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <TabOption path="/" text="Repositories" />
-        <TabOption path="/signin" text="Sign In" />
+        {
+          isSignedIn
+            ? (
+              <TouchableOpacity onPress={handleSignOut}>
+                <Text color="white" fontWeight="bold" fontSize="subheading">Sign Out</Text>
+              </TouchableOpacity>
+            )
+            : <TabOption path="/signin" text="Sign In" />
+        }
+
       </ScrollView>
     </View>
   );
